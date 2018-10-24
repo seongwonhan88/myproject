@@ -1,7 +1,7 @@
 from django.contrib.auth import login, logout
 from django.shortcuts import render, redirect
 
-from .forms import LoginForm
+from .forms import LoginForm, SigninForm
 
 
 def login_view(request):
@@ -16,7 +16,7 @@ def login_view(request):
             return redirect('posts:posts')
     else:
         form = LoginForm()
-    context['form']=form
+    context['form'] = form
     return render(request, 'membership/login_view.html', context)
 
 
@@ -29,11 +29,15 @@ def logout_view(request):
 
 
 def signin_view(request):
-    context={}
+    context = {}
     if request.method == 'POST':
-        pass
-
+        form = SigninForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('posts:posts')
     else:
-        pass
+        form = SigninForm()
 
-    return
+    context['form'] = form
+    return render(request, 'membership/signin_view.html', context)
