@@ -15,5 +15,9 @@
             {% endfor %}
             <button type="submit" class="btn btn-lg btn-primary btn-block">Login</button>
         </form>
+        <div class="text-center">
+        not a member yet?
+        <a href="{% url 'membership:signin-view' %}">Join Summary</a>
+        </div>
     </div>
 {% endblock %}

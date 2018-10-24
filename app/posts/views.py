@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 from .models import Post
@@ -8,7 +9,7 @@ def post_list(request):
     posts = Post.objects.all()
     return render(request, 'posts/post_list.html', {'posts': posts})
 
-
+@login_required
 def post_create(request):
     context = {}
     if request.method == 'POST':

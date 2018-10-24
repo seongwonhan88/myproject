@@ -8,8 +8,8 @@ class LoginForm(forms.Form):
         super().__init__(*args, **kwargs)
         self._user = None
 
-    username = forms.CharField()
-    password = forms.CharField(widget=forms.PasswordInput)
+    username = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control'}))
 
     def clean(self):
         super().clean()
@@ -28,9 +28,9 @@ class LoginForm(forms.Form):
 
 
 class SigninForm(forms.Form):
-    username = forms.CharField()
-    password1 = forms.CharField(widget=forms.PasswordInput)
-    password2 = forms.CharField(widget=forms.PasswordInput)
+    username = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control'}))
+    password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control'}))
+    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control'}))
 
     def clean_username(self):
         super().clean()
