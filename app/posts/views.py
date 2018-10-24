@@ -21,3 +21,8 @@ def post_create(request):
         form = PostCreateForm()
     context['form'] = form
     return render(request, 'posts/post_create.html', context)
+
+
+def profile(request):
+    posts = Post.objects.filter(author=request.user)
+    return render(request, 'posts/post_list_profile.html', {'posts': posts})
