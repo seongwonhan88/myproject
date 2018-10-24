@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect
 from .models import Post
 from .forms import PostCreateForm
 
-
+@login_required
 def post_list(request):
     posts = Post.objects.all()
     return render(request, 'posts/post_list.html', {'posts': posts})
@@ -24,5 +24,6 @@ def post_create(request):
 
 
 def profile(request):
+    username = request.user
     posts = Post.objects.filter(author=request.user)
-    return render(request, 'posts/post_list_profile.html', {'posts': posts})
+    return render(request, 'posts/profile.html', {'posts': posts, 'username': username,})
