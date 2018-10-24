@@ -21,5 +21,6 @@ from config import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('posts/', include('posts.urls')),
+    path('membership/', include('membership.urls')),
     path('', views.index),
 ]
